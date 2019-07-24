@@ -51,26 +51,8 @@ script:
 after_success:
 - travis_retry pip install codecov
 - cd test_project && codecov
-notifications:
-  irc:
-    channels:
-    - irc.freenode.org#yourlabs
-    template:
-    - "%{repository} (%{commit} %{author}) : %{message} %{build_url} %{compare_url}"
 cache:
   directories:
   - .tox/$TOXENV
   - $HOME/.cache/pip
   - $HOME/travis_phantomjs
-deploy:
-  provider: openshift
-  user: jpic@yourlabs.org
-  password:
-    secure: FuIzy9CJ1+SSsLFVXj942Y4DYzv2NLAktHML+VB3IBR+JdJ4cTW7lftwUmmghXE4HmBoHbKsDlpwN/dErPy0yDl2bv3ejJWRWyekIOyu0Omwia0PDTEt6n/mryrQ92dAyjpD6SeypotHqhOCnj1HxJdgwL4EmzG+5o9n8eNte0M=
-  app: dal
-  domain: yourlabs
-  deployment_branch: master
-  skip_cleanup: true
-  on:
-    repo: yourlabs/django-autocomplete-light
-    branch: master
